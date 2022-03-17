@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 int rhombusprep(int);
-void drawsquare(void);
-void drawrhombus(void);
-void draworthtrig(void);
-void drawisotrig(void);
+void drawsquare(char charofshape,int shapesize);
+void drawrhombus(char charofshape,int shapesize);
+void draworthtrig(char charofshape,int shapesize);
+void drawisotrig(char charofshape,int shapesize);
 int getchoice(void);
 int getsize(void);
 char getinputchar(void);
@@ -27,23 +27,28 @@ void drawchooser(void)
 {
     int exitvar =0;
     int choicevar;
+    char charofshape;
+    int shapesize;
+
     while (exitvar == 0)
     {
 
         choicevar = getchoice();
+        shapesize = getsize();
+        charofshape = getinputchar();
         switch(choicevar)
         {
         case 0:
-            drawsquare();
+            drawsquare(charofshape,shapesize);
             break;
         case 1:
-            drawrhombus();
+            drawrhombus(charofshape,shapesize);
             break;
         case 2 :
-            draworthtrig();
+            draworthtrig(charofshape,shapesize);
             break;
         case 3 :
-            drawisotrig();
+            drawisotrig(charofshape,shapesize);
             break;
         case 4:
             exitvar++;
@@ -86,14 +91,11 @@ int rhombusprep(int num){
 
     return num;
 }
-void drawsquare(void)
+void drawsquare(char charofshape,int shapesize)
 {
     int x;
     int y;
-    int shapesize;
-    char charofshape;
-    shapesize = getsize();
-    charofshape =getinputchar();
+
     for(y=1;y<=shapesize;y++)
     {
         for(x=1;x<=shapesize;x++)
@@ -109,20 +111,14 @@ void drawsquare(void)
 
 }
 
-void drawrhombus(void)
+void drawrhombus(char charofshape,int shapesize)
 {
     int y;
     int x1,x2;
-    int shapesize;
-    int truesize;
-    char charofshape;
-    int spaces;
-    shapesize = getsize();
+
     shapesize = rhombusprep(shapesize);
     /* με αυτη την μετατροπή θα επιτύχω τον σχεδιασμο ρόμβου ανεξαρτητα με το αν είναι μονό ή ζυγο το input
     που θα έχει διαμετρο getsize αν το getsize είναι περριτο και getsize+1 αρτίο*/
-
-    charofshape =getinputchar();
     for(y = 0;y<=shapesize;y++){
         for(x1=y;x1<shapesize;x1++){
             printf(" ");
@@ -153,18 +149,11 @@ void drawrhombus(void)
 
 }
 
-void draworthtrig(void)
+void draworthtrig(char charofshape,int shapesize)
 {
     int y;
     int x2;
-    int shapesize;
-    int truesize;
-    char charofshape;
-    int spaces;
-    shapesize = getsize();
-    truesize = shapesize*2 -1;
-    charofshape =getinputchar();
-    spaces = truesize-1;
+
     for(y = 0;y<=shapesize;y++){
        /* for(x1=y;x1<shapesize;x1++){
             printf(" ");
@@ -179,18 +168,11 @@ void draworthtrig(void)
         printf("\n");
    }
 }
-void drawisotrig(void)
+void drawisotrig(char charofshape,int shapesize)
 {
     int y;
     int x1,x2;
-    int shapesize;
-    int truesize;
-    char charofshape;
-    int spaces;
-    shapesize = getsize();
-    truesize = shapesize*2 -1;
-    charofshape =getinputchar();
-    spaces = truesize-1;
+
     for(y = 0;y<=shapesize;y++){
         for(x1=y;x1<shapesize;x1++){
             printf(" ");

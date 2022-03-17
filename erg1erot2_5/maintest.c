@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*μετέτρεψα τις συναρτήσεις ώστε να δέχονται το μεγεθος και χαρακτήρα ως ορίσματα για να μπορούν να καούν η μια την άλλη*/
-
+char inttocharacter(int)/*με αυτή την συνάρτηση μπορω να πιλύσω το ερώτημα της version 4 χωρις να χρέιαστει να αλλάξω τις σύναρτήσεις που έχω φτιάξει*/
 int rhombusprep(int);
 void drawsquare(int intofline,int shapesize);
 void drawrhombus(int intofline,int shapesize);
@@ -22,7 +22,11 @@ int main()
     drawchooser();
     return 0;
 }
-
+char inttocharacter(int num){/*προφανώς η συνάρτηση καθώς και το ερώτημα έψουν νόημα μόνο για num<10 καθώς αν num>10 θα έπιανε δύο ψηφία και τα σχήματα δεν θα μπορούσαν να σχεδιασοτούν*/
+char character ;
+character = num;
+return character;
+}
 int getchoice(void)
 {
     int userchoice;
@@ -43,7 +47,7 @@ void drawchooser(void)
         choicevar = getchoice();
 
         shapesize = getsize();
-        /*intofline =getinputchar(); useless*/
+        intofline =getinputchar();
         switch(choicevar)
         {
         case 0:
@@ -103,20 +107,20 @@ return num;}
 
 void printempty(int start,int stop,int intofline){
     int i;
-    printf("%i",intofline+1);
+    printf("%c",i);
 
     for(i=start ; i< stop;i++){
         printf("-");
     }
 
-    printf("%i",intofline+1);
+    printf("%c",i);
     printf("\n");
 
 }
 void printfull(int length,int intofline){
     int i ;
     for(i=0;i<length;i++){
-        printf("%i",intofline+1);
+        printf("%c",intofline);
     }
     printf("\n");
 }
@@ -124,27 +128,28 @@ void printfull(int length,int intofline){
 void drawsquare(int intofline,int shapesize)
 {
     int i =0 ;
-    printfull(shapesize,i);
-    for(i=1;i<=shapesize-2;i++){
-        printempty(0,shapesize-2,i);
+    printfull(shapesize,intofline);
+    for(i=0;i<shapesize-2;i++){
+        printempty(0,shapesize-2,intofline);
     }
-    printfull(shapesize,i);;
+    printfull(shapesize,intofline);;
 
 
 }
 
 void drawrhombus(int intofline,int shapesize)
 {
-
+    int y;
+    int x1,x2;
 
     shapesize = rhombusprep(shapesize);/* με αυτη την μετατροπή θα επιτύχω τον σχεδιασμο ρόμβου ανεξαρτητα με το αν είναι μονό ή ζυγο το input
     που θα έχει διαμετρο getsize αν το getsize είναι περριτο και getsize+1 αρτίο*/
 
     /*δεν συμπεριλαμβάνω τις παύλες που υπηρχαν στο παράδειγμα ώστε το σχήμα να είναι ρόμβος όπως ζητά η εκφώνηση και για
     να μπορώ να χρησημοποιήσω την drawisotrig*/
-    drawisotrig( 0,shapesize,1);
+    drawisotrig( intofline,shapesize,1);
 
-    inverseisotrig( 0, shapesize);
+    inverseisotrig( intofline, shapesize);
    return;
 
 }
@@ -154,25 +159,25 @@ void draworthtrig(int intofline,int shapesize)
     int y;
     int x1,x2;
     x2 =0;
-    y = 1 ;
+    y = 0 ;
     /*unused code from isotrig
     /*for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }*/
-    printf("%i\n",y);
-    for(y = 2;y<=shapesize-1;y++){
+    printf("%c\n",intofline);
+    for(y = 1;y<shapesize-1;y++){
         /*for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }*/
 
 
-        printempty(0,y-1,y);
+        printempty(0,y-1,intofline);
         x2++;
 
 
    }
 
-   printfull(y+1,y);
+   printfull(y+1,intofline);
 
 
 
@@ -183,7 +188,7 @@ void drawisotrig(int intofline,int shapesize ,int isrhombus)
     int y;
     int x1,x2;
     x2 =0;
-    y = 1 ;
+    y = 0 ;
 
 
 
@@ -191,8 +196,8 @@ void drawisotrig(int intofline,int shapesize ,int isrhombus)
     for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }
-    printf(" %i\n",y);
-    for(y = 1;y<=shapesize-2;y++){
+    printf("%c\n",y);
+    for(y = 1;y<shapesize-1;y++){
         for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }
@@ -217,16 +222,16 @@ void drawisotrig(int intofline,int shapesize ,int isrhombus)
 }
 /*η συνάρτηση δεν είναι ακριβώς ισοσκελές τριγωνο καθώς χρειάζεται μόνο για τον ρόμβο*/
 void inverseisotrig(int intofline,int shapesize){
-    int y,x2,x1,ycounter;
-    ycounter=shapesize+1;
-    for( y = shapesize-1;y>0;y-- ,ycounter++){
+    int y,x2,x1
+    ;
+    for(y = shapesize-1;y>0;y--){
         for(x1=y;x1<=shapesize;x1++){
             printf(" ");
         }
         for(x2 = 0;x2<(y*2)-1;x2++){
             if (x2 ==0 || x2 ==(y*2)-2||y==0)
             {
-                printf("%i",ycounter);
+                printf("%c",y);
             }
             else{printf("-");}
         }

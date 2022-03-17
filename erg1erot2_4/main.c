@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*μετέτρεψα τις συναρτήσεις ώστε να δέχονται το μεγεθος και χαρακτήρα ως ορίσματα για να μπορούν να καούν η μια την άλλη*/
-int makeevenodd(int);
+int rhombusprep(int);
 void drawsquare(char charofshape,int shapesize);
 void drawrhombus(char charofshape,int shapesize);
 void draworthtrig(char charofshape,int shapesize);

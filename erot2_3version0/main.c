@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-void drawsquare(void);
-void drawrhombus(void);
-void draworthtrig(void);
-void drawisotrig(void);
+void drawsquare(int sizeofshape,char charofshape);
+void drawrhombus(int sizeofshape,char charofshape);
+void draworthtrig(int sizeofshape,char charofshape);
+void drawisotrig(int sizeofshape,char charofshape);
 int getchoice(void);
 int getsize(void);
 char getinputchar(void);
@@ -26,22 +26,27 @@ void drawchooser(void)
 {
     int exitvar =0;
     int choicevar;
+    int sizeofshape;
+    char charofshape;
+
     while (exitvar == 0)
     {
         choicevar = getchoice();
+        sizeofshape =getsize();
+        charofshape= getinputchar();
         switch(choicevar)
         {
         case 0:
-            drawsquare();
+            drawsquare( sizeofshape ,charofshape);
             break;
         case 1:
-            drawrhombus();
+            drawrhombus(sizeofshape ,charofshape);
             break;
         case 2 :
-            draworthtrig();
+            draworthtrig(sizeofshape ,charofshape);
             break;
         case 3 :
-            drawisotrig();
+            drawisotrig(sizeofshape ,charofshape);
             break;
         case 4:
             exitvar++;
@@ -54,35 +59,31 @@ void drawchooser(void)
         }
     }
 }
-int getsize(void)
+int getsize(int sizeofshape,char charofshape)
 {
     printf("getsize\n");
 }
-char getinputchar(void)
+char getinputchar(int sizeofshape,char charofshape)
 {
     printf("getinputchar\n");
 }
-void drawsquare(void)
+void drawsquare(int sizeofshape,char charofshape)
 {
-    getsize();
-    getinputchar();
+
     printf("drawsquare\n");
 }
-void drawrhombus(void)
+void drawrhombus(int sizeofshape,char charofshape)
 {
-    getsize();
-    getinputchar();
+
     printf("drawrhombus\n");
 }
-void draworthtrig(void)
+void draworthtrig(int sizeofshape,char charofshape)
 {
-    getsize();
-    getinputchar();
+
     printf("drawotrhtrig\n");
 }
-void drawisotrig(void)
+void drawisotrig(int sizeofshape,char charofshape)
 {
-    getsize();
-    getinputchar();
+
     printf("draisotrig\n");
 }
