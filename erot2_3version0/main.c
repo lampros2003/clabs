@@ -18,7 +18,7 @@ int getchoice(void)
 {
     int userchoice;
     printf("Please input number to print corresponding shape \n");
-    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit\n");
+    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit(your next inputs wont be used)\n");
     scanf("%i",&userchoice);
     return userchoice;
 }
@@ -59,13 +59,15 @@ void drawchooser(void)
         }
     }
 }
-int getsize(int sizeofshape,char charofshape)
+int getsize(void)
 {
     printf("getsize\n");
+    return 0 ;
 }
-char getinputchar(int sizeofshape,char charofshape)
+char getinputchar(void)
 {
     printf("getinputchar\n");
+    return '0';
 }
 void drawsquare(int sizeofshape,char charofshape)
 {

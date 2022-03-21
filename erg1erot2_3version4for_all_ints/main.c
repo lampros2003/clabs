@@ -27,7 +27,7 @@ int getchoice(void)
 {
     int userchoice;
     printf("Please input number to print corresponding shape \n");
-    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit 5: clear the console\n");
+    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit(your next inputs wont be used) 5: clear console\n");
     scanf("%d",&userchoice);
     return userchoice;
 }
@@ -160,7 +160,7 @@ void draworthtrig(int intofline,int shapesize)
             printf(" ");
         }*/
     printf("%i\n",y);
-    for(y = 2;y<=shapesize-1;y++){
+    for(y = 1;y<shapesize-1;y++){
         /*for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }*/

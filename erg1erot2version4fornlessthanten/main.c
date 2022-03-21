@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*μετέτρεψα τις συναρτήσεις ώστε να δέχονται το μεγεθος και χαρακτήρα ως ορίσματα για να μπορούν να καούν η μια την άλλη*/
-int rhombusprep(int);
+
+int rhombusprep(int);/*ΞΌΞµΟ„Ξ±Ο„ΟΞ­Ο€ΞµΞΉ ΞΊΞ±Ο„Ξ¬Ξ»Ξ»Ξ·Ξ»Ξ± Ο„ΞΏ ΟΟΞΉΟƒΞΌΞ± Ο‰Ξ„ΟƒΟ„Ξµ Ξ½Ξ± ΞΌΟ€ΞΏΟΞµΞ― Ξ½Ξ± ΞµΞΊΟ„Ο…Ο€ΟΞ½ΞµΞΉ ΟΟΞΌΞ²ΞΏ*/
+char inttochar(int);/*ΞΌΞµ Ξ±Ο…Ο„Ξ® Ο„Ξ·Ξ½ ΟƒΟ…Ξ½Ξ¬ΟΟ„Ξ·ΟƒΞ· ΞΌΟ€ΞΏΟΟ Ξ½Ξ± Ο‡ΟΞ·ΟƒΞ·ΞΌΞΏΟ€ΞΏΞ―ΟƒΟ‰ Ο„ΞΉΟ‚ Ξ―Ξ΄ΞΉΞµΟ‚ ΟƒΟ…Ξ½Ξ±ΟΟ„Ξ®ΟƒΞµΞΉΟ‚ ΞΌΞµ Ο„Ξ± Ξ¬Ξ»Ξ»Ξ± ΞµΟΟ‰Ο„Ξ®ΞΌΞ±Ο„Ξ± ΞΊΞ¬Ξ½ΞΏΞ½Ο„Ξ±Ο‚ Ο„ΞΏΞ½ Ξ±ΟΞΉΞΈΞΌΟ Ο„Ξ·Ο‚ Ξ³ΟΞ±ΞΌΞΌΞ®Ο‚ Ο‡Ξ±ΟΞ±ΞΊΟ„Ξ®ΟΞ± */
 void drawsquare(char charofshape,int shapesize);
 void drawrhombus(char charofshape,int shapesize);
 void draworthtrig(char charofshape,int shapesize);
@@ -10,7 +11,7 @@ int getchoice(void);
 int getsize(void);
 char getinputchar(void);
 void drawchooser(void);
-void printempty(int start,int stop,char charofshape);/*το printempτy και printfull ειναι συναρτήσεις που μποερέι να χρησημοποιείη κάθε συναρτηση*/
+void printempty(int start,int stop,char charofshape);/*Ο„ΞΏ printempΟ„y ΞΊΞ±ΞΉ printfull ΞµΞΉΞ½Ξ±ΞΉ ΟƒΟ…Ξ½Ξ±ΟΟ„Ξ®ΟƒΞµΞΉΟ‚ Ο€ΞΏΟ… ΞΌΟ€ΞΏΞµΟΞ­ΞΉ Ξ½Ξ± Ο‡ΟΞ·ΟƒΞ·ΞΌΞΏΟ€ΞΏΞΉΞµΞ―Ξ· ΞΊΞ¬ΞΈΞµ ΟƒΟ…Ξ½Ξ±ΟΟ„Ξ·ΟƒΞ·*/
 void printfull(int length,char charofshape);
 void inverseisotrig(char charofshape,int shapesize);
 
@@ -21,11 +22,16 @@ int main()
     drawchooser();
     return 0;
 }
+char inttochar(int number){
+char character;
+character = number +'0';
+return character;
+}
 int getchoice(void)
 {
     int userchoice;
     printf("Please input number to print corresponding shape \n");
-    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit 5: clear the console\n");
+    printf("0:square 1:rhombus 2:orthogonal triangle 3: isosceles triangle 4: exit(your next inputs wont be used) 5: clear console\n");
     scanf("%d",&userchoice);
     return userchoice;
 }
@@ -41,7 +47,7 @@ void drawchooser(void)
         choicevar = getchoice();
 
         shapesize = getsize();
-        charofshape =getinputchar();
+        charofshape ='0';
         switch(choicevar)
         {
         case 0:
@@ -57,6 +63,7 @@ void drawchooser(void)
             drawisotrig(charofshape, shapesize,0);
             break;
         case 4:
+
             exitvar++;
             break;
         case 5:
@@ -121,12 +128,12 @@ void printfull(int length,char charofshape){
 
 void drawsquare(char charofshape,int shapesize)
 {
-    int i =0 ;
-    printfull(shapesize,charofshape);
-    for(i=0;i<shapesize-2;i++){
-        printempty(0,shapesize-2,charofshape);
+    int i =1 ;
+    printfull(shapesize,inttochar(i));
+    for(i=1;i<=shapesize-2;i++){
+        printempty(0,shapesize-2,inttochar(i+1));
     }
-    printfull(shapesize,charofshape);;
+    printfull(shapesize,inttochar(i+1));
 
 
 }
@@ -136,11 +143,11 @@ void drawrhombus(char charofshape,int shapesize)
     int y;
     int x1,x2;
 
-    shapesize = rhombusprep(shapesize);/* με αυτη την μετατροπή θα επιτύχω τον σχεδιασμο ρόμβου ανεξαρτητα με το αν είναι μονό ή ζυγο το input
-    που θα έχει διαμετρο getsize αν το getsize είναι περριτο και getsize+1 αρτίο*/
+    shapesize = rhombusprep(shapesize);/* ΞΌΞµ Ξ±Ο…Ο„Ξ· Ο„Ξ·Ξ½ ΞΌΞµΟ„Ξ±Ο„ΟΞΏΟ€Ξ® ΞΈΞ± ΞµΟ€ΞΉΟ„ΟΟ‡Ο‰ Ο„ΞΏΞ½ ΟƒΟ‡ΞµΞ΄ΞΉΞ±ΟƒΞΌΞΏ ΟΟΞΌΞ²ΞΏΟ… Ξ±Ξ½ΞµΞΎΞ±ΟΟ„Ξ·Ο„Ξ± ΞΌΞµ Ο„ΞΏ Ξ±Ξ½ ΞµΞ―Ξ½Ξ±ΞΉ ΞΌΞΏΞ½Ο Ξ® Ξ¶Ο…Ξ³ΞΏ Ο„ΞΏ input
+    Ο€ΞΏΟ… ΞΈΞ± Ξ­Ο‡ΞµΞΉ Ξ΄ΞΉΞ±ΞΌΞµΟ„ΟΞΏ getsize Ξ±Ξ½ Ο„ΞΏ getsize ΞµΞ―Ξ½Ξ±ΞΉ Ο€ΞµΟΟΞΉΟ„ΞΏ ΞΊΞ±ΞΉ getsize+1 Ξ±ΟΟ„Ξ―ΞΏ*/
 
-    /*δεν συμπεριλαμβάνω τις παύλες που υπηρχαν στο παράδειγμα ώστε το σχήμα να είναι ρόμβος όπως ζητά η εκφώνηση και για
-    να μπορώ να χρησημοποιήσω την drawisotrig*/
+    /*Ξ΄ΞµΞ½ ΟƒΟ…ΞΌΟ€ΞµΟΞΉΞ»Ξ±ΞΌΞ²Ξ¬Ξ½Ο‰ Ο„ΞΉΟ‚ Ο€Ξ±ΟΞ»ΞµΟ‚ Ο€ΞΏΟ… Ο…Ο€Ξ·ΟΟ‡Ξ±Ξ½ ΟƒΟ„ΞΏ Ο€Ξ±ΟΞ¬Ξ΄ΞµΞΉΞ³ΞΌΞ± ΟΟƒΟ„Ξµ Ο„ΞΏ ΟƒΟ‡Ξ®ΞΌΞ± Ξ½Ξ± ΞµΞ―Ξ½Ξ±ΞΉ ΟΟΞΌΞ²ΞΏΟ‚ ΟΟ€Ο‰Ο‚ Ξ¶Ξ·Ο„Ξ¬ Ξ· ΞµΞΊΟ†ΟΞ½Ξ·ΟƒΞ· ΞΊΞ±ΞΉ Ξ³ΞΉΞ±
+    Ξ½Ξ± ΞΌΟ€ΞΏΟΟ Ξ½Ξ± Ο‡ΟΞ·ΟƒΞ·ΞΌΞΏΟ€ΞΏΞΉΞ®ΟƒΟ‰ Ο„Ξ·Ξ½ drawisotrig*/
     drawisotrig( charofshape,shapesize,1);
 
     inverseisotrig( charofshape, shapesize);
@@ -158,20 +165,20 @@ void draworthtrig(char charofshape,int shapesize)
     /*for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }*/
-    printf("%c\n",charofshape);
+    printf("%c\n",inttochar(y+1));
     for(y = 1;y<shapesize-1;y++){
         /*for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }*/
 
 
-        printempty(0,y-1,charofshape);
+        printempty(0,y-1,inttochar(y+1));
         x2++;
 
 
    }
 
-   printfull(y+1,charofshape);
+   printfull(y+1,inttochar(y+1));
 
 
 
@@ -190,34 +197,35 @@ void drawisotrig(char charofshape,int shapesize ,int isrhombus)
     for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }
-    printf("%c\n",charofshape);
+    printf("%c\n",inttochar(y+1));
     for(y = 1;y<shapesize-1;y++){
         for(x1=y;x1<shapesize;x1++){
             printf(" ");
         }
 
 
-        printempty(0,x2+y,charofshape);
+        printempty(0,x2+y,inttochar(y+1));
         x2++;
 
 
    }
    if(!isrhombus){
     printf(" ");
-    printfull(2*(y+1)-1,charofshape);}
+    printfull(2*(y+1)-1,inttochar(y+1));}
 
    else{
     printf(" ");
-    printempty(0,x2+y,charofshape);
+    printempty(0,x2+y,inttochar(y+1));
 
 
    }
 
 }
-/*η συνάρτηση δεν είναι ακριβώς ισοσκελές τριγωνο καθώς χρειάζεται μόνο για τον ρόμβο*/
+/*Ξ· ΟƒΟ…Ξ½Ξ¬ΟΟ„Ξ·ΟƒΞ· Ξ΄ΞµΞ½ ΞµΞ―Ξ½Ξ±ΞΉ Ξ±ΞΊΟΞΉΞ²ΟΟ‚ ΞΉΟƒΞΏΟƒΞΊΞµΞ»Ξ­Ο‚ Ο„ΟΞΉΞ³Ο‰Ξ½ΞΏ ΞΊΞ±ΞΈΟΟ‚ Ο‡ΟΞµΞΉΞ¬Ξ¶ΞµΟ„Ξ±ΞΉ ΞΌΟΞ½ΞΏ Ξ³ΞΉΞ± Ο„ΞΏΞ½ ΟΟΞΌΞ²ΞΏ*/
 void inverseisotrig(char charofshape,int shapesize){
-    int y,x2,x1
-    ;
+    int y,x2,x1;
+    int ycounter;
+    ycounter = shapesize-1;
     for(y = shapesize-1;y>0;y--){
         for(x1=y;x1<=shapesize;x1++){
             printf(" ");
@@ -225,11 +233,13 @@ void inverseisotrig(char charofshape,int shapesize){
         for(x2 = 0;x2<(y*2)-1;x2++){
             if (x2 ==0 || x2 ==(y*2)-2||y==0)
             {
-                printf("%c",charofshape);
+                printf("%c",inttochar(ycounter+2));
             }
             else{printf("-");}
+
         }
         printf("\n");
+        ycounter++;
    }
 
 }
