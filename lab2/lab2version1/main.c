@@ -4,7 +4,7 @@
 #define N 20
 #define timequantum 1
 /*οι μεταβλητες ονομάστηκαν με την εξής λογική: t: temperature , r : right side l:left side t:top b bottom,in inside
-exaple : ttr temperature top right corner
+exaple : tt temperature top
 */
 double tempgetter(void);
 void plakamaker(double ttr,double ttl,double tbr,double tbl, double tin,double plaka[N][M]);
@@ -13,15 +13,15 @@ void plakaprinter(double plaka[N][M]);
 void plakachanger(double plaka[N][M],int quantum);
 int main()
 {
-    double ttr,ttl,tbr,tbl,tin,plaka[N][M];
+    double tr,tl,tb,tt,tin,plaka[N][M];
     textgiver();
 
-    ttr = tempgetter();
-    ttl = tempgetter();
-    tbr = tempgetter();
-    tbl = tempgetter();
+    tt = tempgetter();
+    tl = tempgetter();
+    tb = tempgetter();
+    tr = tempgetter();
     tin = tempgetter();
-    plakamaker( ttr, ttl, tbr, tbl,  tin,plaka);
+    plakamaker( tt, tl, tb, tr,  tin,plaka);
     plakaprinter(plaka);
     plakachanger(plaka,timequantum);
     return 0;
@@ -35,27 +35,29 @@ double tempgetter(void)
     return (double)tempgotten;
 
 }
-void plakamaker(double ttr,double ttl,double tbr,double tbl, double tin,double plaka[N][M])
+void plakamaker(double tt,double tl,double tb,double tr, double tin,double plaka[N][M])
 {
 
     int i,j ;
-
-    for(i=0; i<N; i++)
+    for(i=1;i<N;i++){
+        plaka[i][0] = tl;
+        plaka[0][i] = tt;
+        plaka[N-1][i] = tb;
+        plaka[i][M-1] = tr;
+    }
+    for(i=1; i<N-1; i++)
     {
-        for(j=0; j<M; j++)
+        for(j=1; j<M-1; j++)
         {
             plaka[i][j]= tin;
         }
     }
-    plaka[0][0]=ttl;
-    plaka[0][M-1]=ttr;
-    plaka[N-1][0]=tbl;
-    plaka[N-1][M-1]=tbr;
+
 
     return;
 }
 void textgiver(void){
-    printf("lorem ipsum\n");
+    printf("top left bottom right\n");
 }
 void plakaprinter(double plaka[N][M] ){
     int i,j;
