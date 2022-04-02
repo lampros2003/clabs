@@ -16,10 +16,10 @@ int main()
     double ttr,ttl,tbr,tbl,tin,plaka[N][M];
     textgiver();
 
-    ttr = tempgetter();
     ttl = tempgetter();
-    tbr = tempgetter();
+    ttr = tempgetter();
     tbl = tempgetter();
+    tbr = tempgetter();
     tin = tempgetter();
     plakamaker( ttr, ttl, tbr, tbl,  tin,plaka);
     plakaprinter(plaka);
