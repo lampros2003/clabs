@@ -40,7 +40,7 @@ void plakamaker(double tt,double tl,double tb,double tr, double tin,double plaka
 
     int i,j ;
     for(i=1;i<N;i++){
-        plaka[i][0] = tl;
+        plaka[i][0] = tl    ;
         plaka[0][i] = tt;
         plaka[N-1][i] = tb;
         plaka[i][M-1] = tr;
