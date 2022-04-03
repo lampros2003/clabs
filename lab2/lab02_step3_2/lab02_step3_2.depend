@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1648993289 source:c:\users\hp\documents\github\clabs\lab2\lab02_step3_2\main.c
+	<stdio.h>
+	<stdlib.h>
+
